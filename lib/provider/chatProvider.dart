@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurschat/consts/color_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/messageModel.dart';
@@ -10,8 +11,8 @@ class ChatProvider extends ChangeNotifier {
 
   ChatProvider()
       : _users = [
-    User(id: '1', name: 'Zhandos', avatarUrl: 'https://example.com/avatar1.png'),
-    User(id: '2', name: 'Me', avatarUrl: 'https://example.com/avatar3.png'),
+    User(id: '1', name: 'Me', avatarUrl: 'https://sneg.top/uploads/posts/2023-06/1687990849_sneg-top-p-avatarka-siluet-muzhchini-vkontakte-10.jpg', color: nGreenColor,),
+    User(id: '2', name: 'Zhandos', avatarUrl: 'https://sneg.top/uploads/posts/2023-06/1687990849_sneg-top-p-avatarka-siluet-muzhchini-vkontakte-10.jpg', color: nBlueColor),
   ],
         _messages = [] {
     loadMessagesFromPrefs();
