@@ -1,16 +1,15 @@
-// models/user.dart
-import 'dart:ui';
+import 'messageModel.dart';
 
 class User {
   final String id;
   final String name;
   final String avatarUrl;
-  final Color color;
+  Message? lastMessage;
 
   User({
     required this.id,
     required this.name,
     required this.avatarUrl,
-    required this.color,
+    this.lastMessage,
   });
 }

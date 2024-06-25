@@ -142,5 +142,6 @@ class ChatScreen extends StatelessWidget {
     );
 
     Provider.of<ChatProvider>(context, listen: false).addMessage(newMessage);
+
   }
 }

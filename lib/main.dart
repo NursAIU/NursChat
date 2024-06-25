@@ -1,11 +1,12 @@
+// main.dart
 import 'package:flutter/material.dart';
 import 'package:nurschat/consts/color_string.dart';
-import 'package:nurschat/consts/size_string.dart';
+import 'package:nurschat/consts/text_string.dart';
 import 'package:nurschat/provider/chatProvider.dart';
 import 'package:nurschat/screens/chatScreen.dart';
 import 'package:provider/provider.dart';
 
-import 'consts/text_string.dart';
+import 'consts/size_string.dart';
 import 'models/userModel.dart';
 
 void main() {
@@ -18,8 +19,8 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => ChatProvider(),
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
         title: 'Messenger App',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -34,30 +35,37 @@ class UserListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<User> users = Provider.of<ChatProvider>(context).users;
+
     return Scaffold(
       backgroundColor: nWhiteColor,
       appBar: AppBar(
         backgroundColor: nWhiteColor,
-        title: Text(nChats),
+        toolbarHeight: 100,
+        title: Text(nChats,
+        style: TextStyle(
+          fontSize: 26,
+          fontWeight: FontWeight.w300
+        ),),
       ),
       body: ListView.builder(
         itemCount: users.length,
         itemBuilder: (context, index) {
           User user = users[index];
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: xl),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(width: 1, color: nDarkColor.withOpacity(0.1)))
-              ),
-              child: ListTile(
-                contentPadding: EdgeInsets.all(nDefaultSize),
+            padding: const EdgeInsets.symmetric(horizontal: xl, vertical: mm),
+            child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: user.color,
                   backgroundImage: NetworkImage(user.avatarUrl),
-                  radius: 30,
+                  radius: 24,
                 ),
                 title: Text(user.name),
+                subtitle: user.lastMessage != null
+                    ? Text(
+                  user.lastMessage!.content,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                )
+                    : null,
                 onTap: () {
                   User currentUser;
                   User chatUser;
@@ -79,7 +87,6 @@ class UserListScreen extends StatelessWidget {
                   );
                 },
               ),
-            ),
           );
         },
       ),

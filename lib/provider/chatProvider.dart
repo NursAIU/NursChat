@@ -1,7 +1,7 @@
+// providers/chat_provider.dart
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:nurschat/consts/color_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/messageModel.dart';
 import '../models/userModel.dart';
 
@@ -11,8 +11,8 @@ class ChatProvider extends ChangeNotifier {
 
   ChatProvider()
       : _users = [
-    User(id: '1', name: 'Me', avatarUrl: 'https://sneg.top/uploads/posts/2023-06/1687990849_sneg-top-p-avatarka-siluet-muzhchini-vkontakte-10.jpg', color: nGreenColor,),
-    User(id: '2', name: 'Zhandos', avatarUrl: 'https://sneg.top/uploads/posts/2023-06/1687990849_sneg-top-p-avatarka-siluet-muzhchini-vkontakte-10.jpg', color: nBlueColor),
+    User(id: '1', name: 'ME', avatarUrl: 'https://lh3.googleusercontent.com/a/AEdFTp5HqOslJkzw32yfygJl1A2wHyfkLU2MRkCcJ84j=s96-c'),
+    User(id: '3', name: 'Zhandos', avatarUrl: 'https://lh3.googleusercontent.com/a/AEdFTp5HqOslJkzw32yfygJl1A2wHyfkLU2MRkCcJ84j=s96-c'),
   ],
         _messages = [] {
     loadMessagesFromPrefs();
@@ -24,6 +24,14 @@ class ChatProvider extends ChangeNotifier {
 
   Future<void> addMessage(Message message) async {
     _messages.add(message);
+
+    // Обновляем последнее сообщение у обоих пользователей
+    User sender = _users.firstWhere((user) => user.id == message.senderId);
+    User receiver = _users.firstWhere((user) => user.id == message.receiverId);
+
+    sender.lastMessage = message;
+    receiver.lastMessage = message;
+
     notifyListeners();
     await _saveMessagesToPrefs();
   }
@@ -39,6 +47,15 @@ class ChatProvider extends ChangeNotifier {
     List<String>? messagesJsonList = prefs.getStringList('messages');
     if (messagesJsonList != null) {
       _messages = messagesJsonList.map((json) => Message.fromJson(json)).toList();
+
+      // Обновляем последние сообщения для каждого пользователя
+      for (User user in _users) {
+        List<Message> userMessages = _messages.where((message) =>
+        message.senderId == user.id || message.receiverId == user.id).toList();
+        if (userMessages.isNotEmpty) {
+          user.lastMessage = userMessages.last;
+        }
+      }
     }
     notifyListeners();
   }
