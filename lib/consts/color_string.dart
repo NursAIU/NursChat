@@ -7,3 +7,4 @@ const nChatCurrentColor = Color(0xFFEEEEEE);
 const nGrey600Color = Color(0xFF757575);
 const nGreenColor = Color(0xFF02B033);
 const nBlueColor = Color(0xFF0B72DA);
+const nTextFieldColor = Color(0xFFF3F4F6);
