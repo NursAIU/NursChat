@@ -1,3 +1,9 @@
 const String nChats = 'Чаты';
 const String nLoginWelcome = 'Мы рады что вы с нами';
+const String nRegisterWelcome = 'Регистрация';
 const String nEmailAddress = 'Email Adress';
+const String nPassword = 'Password';
+const String nLoginText = 'Login';
+const String nRegisterText = 'Register';
+const String nNotAMember = 'У вас нету аккаунта?';
+const String nNotAMemberRegister = 'Зарегистрироваться';
