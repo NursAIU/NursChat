@@ -9,8 +9,9 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmController = TextEditingController();
+  final void Function()? onTap;
 
-  RegisterScreen({super.key});
+  RegisterScreen({super.key, required this.onTap});
 
   void register() {}
 
@@ -34,8 +35,9 @@ class RegisterScreen extends StatelessWidget {
                 hintText: nPassword,
                 obscureText: true,
                 controller: _passwordController),
+            const SizedBox(height: 10),
             MyTextField(
-                hintText: nPassword,
+                hintText: nConfirmPassword,
                 obscureText: true,
                 controller: _passwordController),
             const SizedBox(height: 30),
@@ -48,11 +50,14 @@ class RegisterScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(nNotAMember),
+                Text(nHaveAnAcc),
                 const SizedBox(width: 5),
-                Text(
-                  nNotAMemberRegister,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: onTap,
+                  child: Text(
+                    nHaveAnAccLogin,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             )
