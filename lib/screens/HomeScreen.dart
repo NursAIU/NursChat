@@ -54,11 +54,15 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildUserListItem(
       Map<String, dynamic> userData, BuildContext context) {
-    return UserTile(
-        text: userData["email"],
-        onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ChatScreen(receiverEmail: userData["email"],)));
-        });
+    if(userData["email"] != _authService.getCurrentUser()!.email){
+      return UserTile(
+          text: userData["email"],
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => ChatScreen(receiverEmail: userData["email"],)));
+          });
+    } else {
+      return Container();
+    }
   }
 }
