@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
           text: userData["email"],
           onTap: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => ChatScreen(receiverEmail: userData["email"],)));
+                context, MaterialPageRoute(builder: (context) => ChatScreen(receiverEmail: userData["email"], receiverID: userData["uid"],)));
           });
     } else {
       return Container();

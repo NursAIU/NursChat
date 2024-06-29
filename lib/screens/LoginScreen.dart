@@ -36,9 +36,15 @@ class LoginScreen extends StatelessWidget {
           children: [
             Text(nLoginWelcome, style: Theme.of(context).textTheme.headlineLarge?.copyWith(fontSize: 26)),
             const SizedBox(height: 30),
-            MyTextField(hintText: nEmailAddress, obscureText: false, controller: _emailController),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: MyTextField(hintText: nEmailAddress, obscureText: false, controller: _emailController),
+            ),
             const SizedBox(height: 10),
-            MyTextField(hintText: nPassword, obscureText: true, controller: _passwordController),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: MyTextField(hintText: nPassword, obscureText: true, controller: _passwordController),
+            ),
             const SizedBox(height: 30),
             MyButton(text: nLoginText,color: nWhiteColor, fontSize: 16, onTap: () => login(context)),
             const SizedBox(height: 30),

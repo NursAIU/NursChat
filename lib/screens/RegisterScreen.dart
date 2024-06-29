@@ -49,22 +49,31 @@ class RegisterScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 const SizedBox(height: 30),
-                MyTextField(
-                  hintText: nEmailAddress,
-                  obscureText: false,
-                  controller: _emailController,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: MyTextField(
+                    hintText: nEmailAddress,
+                    obscureText: false,
+                    controller: _emailController,
+                  ),
                 ),
                 const SizedBox(height: 10),
-                MyTextField(
-                  hintText: nPassword,
-                  obscureText: true,
-                  controller: _passwordController,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: MyTextField(
+                    hintText: nPassword,
+                    obscureText: true,
+                    controller: _passwordController,
+                  ),
                 ),
                 const SizedBox(height: 10),
-                MyTextField(
-                  hintText: nConfirmPassword,
-                  obscureText: true,
-                  controller: _confirmController,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: MyTextField(
+                    hintText: nConfirmPassword,
+                    obscureText: true,
+                    controller: _confirmController,
+                  ),
                 ),
                 const SizedBox(height: 30),
                 MyButton(

@@ -1,4 +1,3 @@
-import 'dart:js_interop';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nurschat/models/Message.dart';
@@ -23,8 +22,8 @@ class ChatService {
     final Timestamp timestamp = Timestamp.now();
 
     Message newMessage = Message(
-        senderID: currentUserEmail,
-        senderEmail: currentUserID,
+        senderID: currentUserID,
+        senderEmail: currentUserEmail,
         receiverID: receiverID,
         message: message,
         timestamp: timestamp);
